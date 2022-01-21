@@ -1,6 +1,16 @@
-import React from 'react';
+import { connect } from 'react-redux';
+import React, { useEffect } from 'react';
+import { fetchPosts } from '../actions';
 
-const PostList = () => {
+interface IPostListProps {
+  fetchPosts: () => Promise<void>
+}
+
+const PostList = (props: IPostListProps) => {
+  useEffect(() => {
+    props.fetchPosts()
+  }, [])
+
   return (
     <>
       <h2>Post List</h2>
@@ -8,4 +18,7 @@ const PostList = () => {
   );
 };
 
-export default PostList;
+export default connect(
+  null,
+  { fetchPosts }
+)(PostList);
