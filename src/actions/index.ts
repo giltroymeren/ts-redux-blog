@@ -14,11 +14,15 @@ export interface IPost {
   body: string
 }
 
+interface IPostResponse {
+  data: IPost[]
+}
+
 export const fetchPosts = () =>
-  async (dispatch: ThunkDispatch<{}, {}, AnyAction>): Promise<void> => {
-    const response: IPost[] = await jsonPlaceholder.get('/posts')
+  async (dispatch: ThunkDispatch<{}, {}, AnyAction>) => {
+    const response: IPostResponse = await jsonPlaceholder.get('/posts')
     dispatch({
       type: EActionTypes.fetchPosts,
-      payload: response
+      payload: response.data
     })
   }
