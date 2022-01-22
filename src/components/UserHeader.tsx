@@ -3,22 +3,26 @@ import { connect } from 'react-redux';
 import { getUser, IUser } from '../actions';
 import { IRootState } from '../reducers';
 
-interface IUserHeaderProps {
+interface IOwnProps {
   userId: number
-  users: IUser[]
+}
+
+interface IConnectedProps {
+  userId: number
+  user: IUser | undefined
   getUser: (id: number) => Promise<void>
 }
 
-const UserHeader: React.FC<IUserHeaderProps> = ({
+type TComponentProps = IConnectedProps & IOwnProps
+
+const UserHeader = ({
   userId,
-  users,
+  user,
   getUser
-}) => {
+}: TComponentProps) => {
   useEffect(() => {
     getUser(userId)
   }, [])
-
-  const user = users.find((user: IUser) => user.id === userId)
 
   if (!user) {
     return <div>Loading...</div>
@@ -28,9 +32,13 @@ const UserHeader: React.FC<IUserHeaderProps> = ({
   );
 };
 
-const mapStateToProps = (state: IRootState) => {
+const mapStateToProps = (
+  state: IRootState,
+  ownProps: IOwnProps
+) => {
   return {
-    users: state.users
+    user: state.users.find(
+      (user: IUser) => user.id === ownProps.userId)
   }
 }
 
