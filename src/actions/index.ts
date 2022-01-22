@@ -1,8 +1,18 @@
 import { ThunkDispatch } from 'redux-thunk'
 import { AnyAction } from 'redux';
+import _ from 'lodash'
 
 import jsonPlaceholder from '../api/jsonPlaceholder'
-import { EActionTypes, IPost, IUser } from '../common/types'
+import { EActionTypes, IPost, IRootState, IUser } from '../common/types'
+
+export const fetchPostsAndUsers = () =>
+  async (dispatch: ThunkDispatch<{}, {}, AnyAction>,
+    getState: () => IRootState) => {
+    await dispatch(fetchPosts())
+
+    const userIds = _.uniq(_.map(getState().posts, 'userId'))
+    userIds.forEach((id: number) => dispatch(getUser(id)))
+  }
 
 interface IUserResponse {
   data: IUser
@@ -21,7 +31,7 @@ interface IPostResponse {
   data: IPost[]
 }
 
-export const fetchPosts = () =>
+const fetchPosts = () =>
   async (dispatch: ThunkDispatch<{}, {}, AnyAction>) => {
     const response: IPostResponse = await jsonPlaceholder.get('/posts')
     dispatch({

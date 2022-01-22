@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { getUser } from '../actions';
 import { IRootState, IUser } from '../common/types';
 
 interface IOwnProps {
@@ -10,19 +9,14 @@ interface IOwnProps {
 interface IConnectedProps {
   userId: number
   user: IUser | undefined
-  getUser: (id: number) => Promise<void>
 }
 
 type TComponentProps = IConnectedProps & IOwnProps
 
 const UserHeader = ({
   userId,
-  user,
-  getUser
+  user
 }: TComponentProps) => {
-  useEffect(() => {
-    getUser(userId)
-  }, [])
 
   if (!user) {
     return <div>Loading...</div>
@@ -44,5 +38,5 @@ const mapStateToProps = (
 
 export default connect(
   mapStateToProps,
-  { getUser }
+  {}
 )(UserHeader)

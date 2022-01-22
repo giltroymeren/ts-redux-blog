@@ -1,20 +1,20 @@
 import { connect } from 'react-redux';
 import React, { useEffect } from 'react';
-import { fetchPosts } from '../actions';
+import { fetchPostsAndUsers } from '../actions';
 import UserHeader from './UserHeader'
 import { IRootState, IPost } from '../common/types';
 
 interface IPostListProps {
   posts: IPost[]
-  fetchPosts: () => Promise<void>
+  fetchPostsAndUsers: () => Promise<void>
 }
 
 const PostList: React.FC<IPostListProps> = ({
   posts,
-  fetchPosts
+  fetchPostsAndUsers
 }) => {
   useEffect(() => {
-    fetchPosts()
+    fetchPostsAndUsers()
   }, [])
 
   return (
@@ -49,5 +49,5 @@ const mapStateToProps = (state: IRootState) => {
 
 export default connect(
   mapStateToProps,
-  { fetchPosts }
+  { fetchPostsAndUsers }
 )(PostList);
