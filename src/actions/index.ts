@@ -21,13 +21,18 @@ interface IUserResponse {
 }
 
 export const getUser = (id: number) =>
-  async (dispatch: ThunkDispatch<{}, {}, AnyAction>) => {
+  (dispatch: ThunkDispatch<{}, {}, AnyAction>) => {
+    return _getUser(id, dispatch)
+  }
+
+const _getUser = _.memoize(
+  async (id: number, dispatch: ThunkDispatch<{}, {}, AnyAction>) => {
     const response: IUserResponse = await jsonPlaceholder.get(`/users/${id}`)
     dispatch({
       type: EActionTypes.getUser,
       payload: response.data
     })
-  }
+  })
 
 export interface IPost {
   userId: number

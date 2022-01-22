@@ -22,7 +22,7 @@ const UserHeader = ({
 }: TComponentProps) => {
   useEffect(() => {
     getUser(userId)
-  }, [])
+  })
 
   if (!user) {
     return <div>Loading...</div>
