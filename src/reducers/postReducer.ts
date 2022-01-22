@@ -1,4 +1,4 @@
-import { EActionTypes, IPost } from "../actions";
+import { EActionTypes, IPost } from "../common/types";
 
 interface IFetchPostsActionType {
   type: EActionTypes.fetchPosts

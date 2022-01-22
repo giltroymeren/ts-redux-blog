@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
 import React, { useEffect } from 'react';
-import { fetchPosts, IPost } from '../actions';
+import { fetchPosts } from '../actions';
 import UserHeader from './UserHeader'
-import { IRootState } from '../reducers';
+import { IRootState, IPost } from '../common/types';
 
 interface IPostListProps {
   posts: IPost[]

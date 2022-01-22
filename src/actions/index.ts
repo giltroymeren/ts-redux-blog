@@ -2,19 +2,7 @@ import { ThunkDispatch } from 'redux-thunk'
 import { AnyAction } from 'redux';
 
 import jsonPlaceholder from '../api/jsonPlaceholder'
-import _ from 'lodash'
-
-export enum EActionTypes {
-  'fetchPosts',
-  'getUser'
-}
-
-export interface IUser {
-  id: number
-  name: string
-  username: string
-  email: string
-}
+import { EActionTypes, IPost, IUser } from '../common/types'
 
 interface IUserResponse {
   data: IUser
@@ -28,13 +16,6 @@ export const getUser = (id: number) =>
       payload: response.data
     })
   }
-
-export interface IPost {
-  userId: number
-  id: number
-  title: string
-  body: string
-}
 
 interface IPostResponse {
   data: IPost[]

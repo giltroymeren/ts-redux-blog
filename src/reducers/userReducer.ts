@@ -1,4 +1,4 @@
-import { EActionTypes, IUser } from "../actions"
+import { EActionTypes, IUser } from "../common/types"
 
 interface IGetUserActionType {
   type: EActionTypes.getUser

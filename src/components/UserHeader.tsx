@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { getUser, IUser } from '../actions';
-import { IRootState } from '../reducers';
+import { getUser } from '../actions';
+import { IRootState, IUser } from '../common/types';
 
 interface IOwnProps {
   userId: number
