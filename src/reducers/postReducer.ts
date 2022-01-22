@@ -5,7 +5,7 @@ interface IFetchPostsActionType {
   payload: IPost
 }
 
-export default (
+const postReducer = (
   state = [],
   action: IFetchPostsActionType) => {
   switch (action.type) {
@@ -16,3 +16,5 @@ export default (
       return state
   }
 }
+
+export default postReducer

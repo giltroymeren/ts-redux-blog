@@ -5,7 +5,7 @@ interface IGetUserActionType {
   payload: IUser
 }
 
-export default (
+const userReducer = (
   state = [],
   action: IGetUserActionType
 ) => {
@@ -17,3 +17,5 @@ export default (
       return state
   }
 }
+
+export default userReducer
