@@ -15,7 +15,7 @@ const PostList: React.FC<IPostListProps> = ({
 }) => {
   useEffect(() => {
     fetchPosts()
-  })
+  }, [])
 
   return (
     <>
