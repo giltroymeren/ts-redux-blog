@@ -1,7 +1,8 @@
 import { connect } from 'react-redux';
 import React, { useEffect } from 'react';
 import { fetchPosts, IPost } from '../actions';
-import { IPostState } from '../reducers/postReducer';
+import UserHeader from './UserHeader'
+import { IRootState } from '../reducers';
 
 interface IPostListProps {
   posts: IPost[]
@@ -30,6 +31,8 @@ const PostList: React.FC<IPostListProps> = ({
                 <h2>{post.title}</h2>
                 <p>{post.body}</p>
               </div>
+
+              <UserHeader userId={post.userId} />
             </div>
           </div>
         ))}
@@ -38,7 +41,7 @@ const PostList: React.FC<IPostListProps> = ({
   );
 };
 
-const mapStateToProps = (state: IPostState) => {
+const mapStateToProps = (state: IRootState) => {
   return {
     posts: state.posts
   }
